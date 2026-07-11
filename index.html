@@ -11,10 +11,6 @@
 body{font-family:'Cairo',sans-serif;min-height:100vh;background:radial-gradient(circle at center,#11959e 0%,#0d7b82 100%);display:flex;justify-content:center;align-items:center;overflow-x:hidden;position:relative;padding:20px 0;color:#fff}
 .sticker{position:absolute;z-index:2;pointer-events:none;filter:drop-shadow(0 8px 15px rgba(0,0,0,.3))}
 
-/* حركة الأتوبيس */
-.moving-bus-top { position: fixed; top: 15px; right: -250px; width: 180px; z-index: 9999; pointer-events: none; animation: fastDrive 6s linear infinite; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4)); }
-@keyframes fastDrive { 0% { right: -250px; transform: scaleX(-1); } 100% { right: 100vw; transform: scaleX(-1); } }
-
 /* حركات زجزاجية للملصقات */
 @keyframes zigzag1 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(15px, -20px) rotate(8deg); } 66% { transform: translate(-15px, -40px) rotate(-8deg); } }
 @keyframes zigzag2 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(-20px, -25px) rotate(-10deg); } 66% { transform: translate(20px, -45px) rotate(10deg); } }
@@ -37,45 +33,59 @@ body{font-family:'Cairo',sans-serif;min-height:100vh;background:radial-gradient(
 .r7 { right: 10%; top: 78%; width: 125px; animation: zigzag2 12s infinite; }
 .r8 { right: 15%; top: 90%; width: 135px; animation: zigzag1 9.5s infinite; }
 
-.container-3d{width:95%;max-width:480px;position:relative;z-index:10;padding:25px;border-radius:30px;background:rgba(12,111,117,.85);backdrop-filter:blur(15px);box-shadow:0 15px 35px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1)}
-.logo{width:60%;height:auto;max-height:80px;margin:0 auto 10px;display:block;object-fit:contain}
-.school-name{font-size:24px;font-weight:900;margin:10px 0 0;text-align:center;display:inline-block;width:100%;animation:bounce 3s infinite ease-in-out}
-.sub-name{font-size:16px;text-align:center;margin-bottom:10px;color:#f7ce74}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.container-3d{width:95%;max-width:480px;position:relative;z-index:10;padding:30px 25px;border-radius:30px;background:rgba(12,111,117,.85);backdrop-filter:blur(15px);box-shadow:0 15px 35px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1)}
+
+/* الباص الثابت فوق العنوان */
+.static-bus {width:160px; display:block; margin: 0 auto 10px; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.4));}
+
+/* العنوان النيون */
+.neon-banner {font-size: 38px; font-weight: 900; text-align: center; display: block; width: 100%; color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #f7ce74, 0 0 20px #c4963b, 0 0 40px #c4963b; letter-spacing: 2px; margin-bottom: 5px; animation: pulse 2s infinite alternate;}
+@keyframes pulse { from { text-shadow: 0 0 5px #fff, 0 0 10px #f7ce74, 0 0 20px #c4963b; } to { text-shadow: 0 0 10px #fff, 0 0 20px #f7ce74, 0 0 30px #c4963b, 0 0 40px #c4963b; } }
+.arabic-subtitle {font-size: 22px; color: #f7ce74; text-align: center; font-weight: 900; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);}
+
 .red-letter{color:#ff4d4d}
-h2{text-align:center;color:#f7ce74;margin-bottom:15px;font-size:15px}
+h2{text-align:center;color:#f7ce74;margin-bottom:15px;font-size:16px}
 .input-group{margin-bottom:12px}
-input,select{width:100%;padding:12px;border:none;border-radius:10px;font-family:Cairo;font-size:14px;outline:none}
+input,select{width:100%;padding:12px;border:none;border-radius:10px;font-family:Cairo;font-size:14px;outline:none;background:#fff; color:#333}
 button{width:100%;padding:14px;border:none;border-radius:12px;background:#c4963b;color:#fff;font-size:18px;font-weight:bold;cursor:pointer;box-shadow:0 6px 0 #a3792a;transition:all 0.1s}
 button:hover{background:#d4a545}
 button:active{transform:translateY(4px);box-shadow:0 2px 0 #a3792a}
 button:disabled {background:#999; box-shadow:0 6px 0 #666; cursor: not-allowed;}
 
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center;z-index:999}
-.popup{background:#fff;color:#333;padding:25px;border-radius:20px;text-align:center;width:90%;max-width:400px}
-.popup .code{color:#8b0000;font-weight:900;font-size:22px;margin:15px 0;display:block; direction: ltr; unicode-bidi: isolate;}
-.popup button{background:#11959e;box-shadow:0 4px 0 #0d7b82}
+/* زرار الإدارة */
+.admin-btn {position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.15); width:40px; height:40px; padding:0; border: none; color: #fff; border-radius: 10px; cursor: pointer; transition: 0.3s; font-size: 18px; box-shadow: none;}
+.admin-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); box-shadow: none;}
 
-.contact-section{margin-top:20px;text-align:center;padding:15px;border-top:1px solid rgba(255,255,255,0.2);font-size:14px}
-.contact-section a{color:#f7ce74;text-decoration:none;display:block;margin:5px 0}
-.whatsapp-btn{background:#25D366;color:#fff !important;padding:10px;border-radius:10px;font-weight:bold;font-size:16px;margin-top:10px !important;display:inline-block;width:100%;box-shadow:0 4px 0 #1da851;transition:all 0.1s}
-.whatsapp-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #1da851;}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:9999; backdrop-filter: blur(5px);}
+.popup{background:#fff;color:#333;padding:25px;border-radius:20px;text-align:center;width:90%;max-width:400px; position:relative;}
+.popup.admin-panel {max-width: 800px; max-height: 90vh; overflow-y: auto;}
+.popup .close-btn {position:absolute; top:15px; right:15px; background:none; box-shadow:none; color:#ff4d4d; width:auto; padding:0; font-size:24px;}
+.popup .code{color:#8b0000;font-weight:900;font-size:22px;margin:15px 0;display:block; direction: ltr; unicode-bidi: isolate;}
+
+/* جدول الأدمن */
+.admin-table-container {overflow-x: auto; margin: 15px 0;}
+table {width: 100%; border-collapse: collapse; min-width: 500px;}
+th, td {border: 1px solid #ddd; padding: 10px; text-align: center; font-size:14px;}
+th {background: #11959e; color: #fff;}
+td input {padding: 6px; border: 1px solid #ccc; border-radius: 5px; width: 100%; text-align:center;}
+.action-btn {padding: 6px 12px; font-size: 14px; margin: 2px; width: auto; display:inline-block;}
+.delete-btn {background: #ff4d4d; box-shadow: 0 3px 0 #cc0000;}
+.add-btn {background: #28a745; box-shadow: 0 3px 0 #1e7e34; margin-bottom: 15px;}
+.download-btn {background: #17a2b8; box-shadow: 0 4px 0 #117a8b; margin-top: 15px;}
+
+/* كارت التواصل المعدل */
+.contact-section{margin-top:25px;text-align:center;padding:20px;background:rgba(0,0,0,0.2);border-radius:15px;border:1px solid rgba(255,255,255,0.1);box-shadow:inset 0 0 10px rgba(0,0,0,0.1);font-size:14px}
+.contact-section a{color:#f7ce74;text-decoration:none;display:block;margin:10px 0;transition:all 0.3s ease;}
+.contact-section a:hover{transform:translateX(-5px); color:#fff;}
+.whatsapp-btn{background:linear-gradient(45deg, #25D366, #128C7E);color:#fff !important;padding:12px;border-radius:10px;font-weight:bold;font-size:16px;margin-top:15px !important;display:inline-block;width:100%;box-shadow:0 4px 15px rgba(37, 211, 102, 0.4);border:none;}
+.whatsapp-btn:hover {transform:translateY(-2px) !important;}
 
 @media(max-width:1100px){.sticker{display:none}}
 </style>
 </head>
 <body>
 
-<img src="https://i.ibb.co/gF7v68zg/pngtree-a-happy-cartoon-school-bus-filled-with-diverse-cheerful-waving-children-png-image-16670445.webp" class="moving-bus-top">
-
-<div id="popupOverlay" class="overlay">
-    <div class="popup">
-        <p>تم الحجز بنجاح!</p>
-        <span class="code" id="popupCode"></span>
-        <button onclick="closePopup()">موافق</button>
-    </div>
-</div>
-
+<!-- الملصقات يمين ويسار -->
 <img src="https://i.ibb.co/gF7v68zg/pngtree-a-happy-cartoon-school-bus-filled-with-diverse-cheerful-waving-children-png-image-16670445.webp" class="sticker l1">
 <img src="https://i.ibb.co/twkMwBC0/back-school-bus-driving-on-600nw-2660777367.webp" class="sticker l2">
 <img src="https://i.ibb.co/wZ0T4NnH/pngtree-cartoon-school-bus-little-fresh-kid-image-2278366.jpg" class="sticker l3">
@@ -94,42 +104,93 @@ button:disabled {background:#999; box-shadow:0 6px 0 #666; cursor: not-allowed;}
 <img src="https://i.ibb.co/FbphpTVt/download-1.webp" class="sticker r7">
 <img src="https://i.ibb.co/20kPYJd3/download.webp" class="sticker r8">
 
-<div class="container-3d">
-<img src="" class="logo">
-<div class="school-name"><span class="red-letter">R</span>izk <span class="red-letter">S</span>ons </div>
-<div class="sub-name"><span class="red-letter">ا</span>لسلام</div>
-<h2>حجز باصات المدرسة</h2>
-<form id="busForm" onsubmit="handleFormSubmit(event)">
-<div class="input-group"><input type="text" id="studentName" placeholder="إسم الطالب" required></div>
-
-<div class="input-group"><input type="text" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" id="nationalId" placeholder="الرقم القومي (14 رقم)" required oninput="this.value = this.value.replace(/[^0-9]/g, '');"></div>
-
-<div class="input-group"><input type="tel" pattern="[0-9]{11}" maxlength="11" id="mobile" placeholder="رقم موبايل ولي الأمر (11 رقم)" required oninput="this.value = this.value.replace(/[^0-9]/g, '');"></div>
-
-<div class="input-group"><input type="text" id="address" placeholder="العنوان بالتفصيل" required></div>
-
-<div class="input-group"><select id="grade" required><option value="" disabled selected>اختر الفرقة الدراسية</option></select></div>
-<div class="input-group"><select id="area" required><option value="" disabled selected>اختر المنطقة السكنية</option></select></div>
-<div class="input-group"><select id="route" required><option value="" disabled selected>اختر باص رووت</option></select></div>
-<button type="submit" id="submitBtn">تأكيد الحجز</button>
-</form>
-
-<div class="contact-section">
-    <p>للتواصل معنا:</p>
-    <a href="tel:01154896420"><i class="fas fa-phone-alt"></i> 01154896420 </a>
-    <a href="mailto:info@ngms-eg.com"><i class="fas fa-envelope"></i> info@ngms-eg.com</a>
-    <a href="" target="_blank">شارع 27 خلف حديقه بدر - السلام</a>
-    <a href="https://wa.me/201154896420" target="_blank" class="whatsapp-btn">
-        <i class="fab fa-whatsapp"></i> للشكاوى والاستفسارات (واتساب)
-    </a>
+<!-- رسالة النجاح -->
+<div id="popupOverlay" class="overlay">
+    <div class="popup">
+        <p>تم الحجز بنجاح!</p>
+        <span class="code" id="popupCode"></span>
+        <button style="background:#11959e;box-shadow:0 4px 0 #0d7b82" onclick="closeOverlay('popupOverlay')">موافق</button>
+    </div>
 </div>
+
+<!-- نافذة تسجيل دخول الإدارة -->
+<div id="loginOverlay" class="overlay">
+    <div class="popup">
+        <button class="close-btn" onclick="closeOverlay('loginOverlay')"><i class="fas fa-times"></i></button>
+        <h3 style="margin-bottom:20px; color:#11959e;">تسجيل دخول الإدارة</h3>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="input-group"><input type="text" id="adminUser" placeholder="اسم المستخدم" required></div>
+            <div class="input-group"><input type="password" id="adminPass" placeholder="كلمة المرور" required></div>
+            <button type="submit" id="loginBtn" style="background:#11959e;box-shadow:0 4px 0 #0d7b82">دخول</button>
+        </form>
+    </div>
+</div>
+
+<!-- لوحة تحكم الإدارة -->
+<div id="adminOverlay" class="overlay">
+    <div class="popup admin-panel">
+        <button class="close-btn" onclick="closeOverlay('adminOverlay')"><i class="fas fa-times"></i></button>
+        <h2 style="color:#11959e; font-size:22px;">لوحة تحكم البيانات (شيت Data)</h2>
+        <button class="action-btn add-btn" onclick="addNewRow()"><i class="fas fa-plus"></i> إضافة صف جديد</button>
+        
+        <div class="admin-table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>المنطقة السكنية</th>
+                        <th>باص رووت</th>
+                        <th>الفرقة الدراسية</th>
+                        <th>إجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- سيتم ملء البيانات هنا -->
+                </tbody>
+            </table>
+        </div>
+        
+        <button id="saveDataBtn" onclick="saveAdminData()" style="background:#c4963b;">حفظ التعديلات في الشيت</button>
+        <button id="downloadBtn" onclick="downloadReserveSheet()" class="action-btn download-btn"><i class="fas fa-file-download"></i> تحميل شيت الحجز بالكامل</button>
+    </div>
+</div>
+
+<!-- الكونتينر الرئيسي -->
+<div class="container-3d">
+    <button class="admin-btn" onclick="openLogin()" title="لوحة الإدارة"><i class="fas fa-user-shield"></i></button>
+    
+    <img src="https://i.ibb.co/gF7v68zg/pngtree-a-happy-cartoon-school-bus-filled-with-diverse-cheerful-waving-children-png-image-16670445.webp" class="static-bus">
+    
+    <div class="neon-banner"><span class="red-letter">R</span>izk <span class="red-letter">S</span>ons </div>
+    <div class="arabic-subtitle">أولاد رزق .. للرحلات</div>
+    
+    <h2>حجز باصات المدرسة</h2>
+    <form id="busForm" onsubmit="handleFormSubmit(event)">
+        <div class="input-group"><input type="text" id="studentName" placeholder="إسم الطالب" required></div>
+        <div class="input-group"><input type="text" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" id="nationalId" placeholder="الرقم القومي (14 رقم)" required oninput="this.value = this.value.replace(/[^0-9]/g, '');"></div>
+        <div class="input-group"><input type="tel" pattern="[0-9]{11}" maxlength="11" id="mobile" placeholder="رقم موبايل ولي الأمر (11 رقم)" required oninput="this.value = this.value.replace(/[^0-9]/g, '');"></div>
+        <div class="input-group"><input type="text" id="address" placeholder="العنوان بالتفصيل" required></div>
+        <div class="input-group"><select id="grade" required><option value="" disabled selected>اختر الفرقة الدراسية</option></select></div>
+        <div class="input-group"><select id="area" required><option value="" disabled selected>اختر المنطقة السكنية</option></select></div>
+        <div class="input-group"><select id="route" required><option value="" disabled selected>اختر باص رووت</option></select></div>
+        <button type="submit" id="submitBtn">تأكيد الحجز</button>
+    </form>
+
+    <div class="contact-section">
+        <p style="color:#fff; font-weight:bold; margin-bottom:10px;">للتواصل معنا:</p>
+        <a href="tel:01154896420"><i class="fas fa-phone-alt"></i> 01154896420 </a>
+        <a href="mailto:info@ngms-eg.com"><i class="fas fa-envelope"></i> info@ngms-eg.com</a>
+        <a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i> شارع 27 خلف حديقة بدر - السلام</a>
+        <a href="https://wa.me/201154896420" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> للشكاوى والاستفسارات (واتساب)
+        </a>
+    </div>
 </div>
 
 <script>
-// الرابط الخاص بـ Google Apps Script Web App
+// --- هام: ضع رابط الـ Web App الجديد هنا بعد التعديل ---
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwq5IeH5o-OUBq37iRSoY6gouwYQK-kzG9qX37Qca3CgU-QzO9dAF0iYxnlO1orZxz5/exec";
 
-// جلب البيانات عند فتح الصفحة وإعادة التحديث التلقائي كل 30 ثانية
+// جلب بيانات القوائم المنسدلة
 window.onload = function() {
     fetchData();
     setInterval(fetchData, 30000); 
@@ -137,7 +198,7 @@ window.onload = function() {
 
 async function fetchData() {
     try {
-        let response = await fetch(SCRIPT_URL);
+        let response = await fetch(SCRIPT_URL + "?action=getDropdowns");
         let data = await response.json();
         setupDropdowns(data);
     } catch (error) {
@@ -155,29 +216,27 @@ function fillSelect(id, items, placeholderText){
     var s = document.getElementById(id);
     var currentVal = s.value; 
     s.innerHTML = '<option value="" disabled ' + (currentVal ? '' : 'selected') + '>' + placeholderText + '</option>';
-    
     if(items && items.length > 0) {
         items.forEach(function(i){
             var o = document.createElement('option');
-            o.value = i;
-            o.text = i;
+            o.value = i; o.text = i;
             if(i === currentVal) o.selected = true; 
             s.appendChild(o);
         });
     }
 }
 
-function closePopup(){
-    document.getElementById('popupOverlay').style.display='none';
-}
+function closeOverlay(id){ document.getElementById(id).style.display='none'; }
+function openLogin(){ document.getElementById('loginOverlay').style.display='flex'; }
 
+// 1. عملية الحجز العادية
 async function handleFormSubmit(event){
     event.preventDefault();
     var btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.innerText = "جاري الحجز...";
+    btn.disabled = true; btn.innerText = "جاري الحجز...";
     
     var packet = {
+        action: 'reserve', // إرسال الأكشن للسيرفر
         studentName: document.getElementById('studentName').value,
         nationalId: document.getElementById('nationalId').value,
         mobile: document.getElementById('mobile').value,
@@ -192,11 +251,8 @@ async function handleFormSubmit(event){
             method: 'POST',
             body: JSON.stringify(packet)
         });
-        
         let res = await response.json();
-        
-        btn.disabled = false;
-        btn.innerText = "تأكيد الحجز";
+        btn.disabled = false; btn.innerText = "تأكيد الحجز";
         
         if(res.success){
             document.getElementById('popupCode').innerText = res.bookingCode || "غير متاح";
@@ -206,10 +262,138 @@ async function handleFormSubmit(event){
             alert(res.message || "حدث خطأ ما");
         }
     } catch (error) {
-        console.error('Error:', error);
-        btn.disabled = false;
-        btn.innerText = "تأكيد الحجز";
-        alert("فشل الاتصال بالسيرفر. تأكد من إعدادات جوجل سكريبت كـ API.");
+        btn.disabled = false; btn.innerText = "تأكيد الحجز";
+        alert("فشل الاتصال بالسيرفر. تأكد من إعدادات السكريبت.");
+    }
+}
+
+// 2. تسجيل دخول الأدمن
+async function handleLogin(event){
+    event.preventDefault();
+    var btn = document.getElementById('loginBtn');
+    var u = document.getElementById('adminUser').value;
+    var p = document.getElementById('adminPass').value;
+    
+    btn.disabled = true; btn.innerText = "جاري التحقق...";
+    
+    try {
+        let response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({action: 'login', user: u, pass: p})
+        });
+        let res = await response.json();
+        btn.disabled = false; btn.innerText = "دخول";
+        
+        if(res.success){
+            closeOverlay('loginOverlay');
+            document.getElementById('loginForm').reset();
+            loadAdminData(); // جلب الداتا وعرض اللوحة
+        } else {
+            alert("بيانات الدخول غير صحيحة!");
+        }
+    } catch(e) {
+        btn.disabled = false; btn.innerText = "دخول";
+        alert("فشل الاتصال بالسيرفر.");
+    }
+}
+
+// 3. جلب بيانات الأدمن وتعبئة الجدول
+async function loadAdminData(){
+    document.getElementById('adminOverlay').style.display='flex';
+    document.getElementById('tableBody').innerHTML = '<tr><td colspan="4">جاري التحميل...</td></tr>';
+    
+    try {
+        let response = await fetch(SCRIPT_URL + "?action=getAdminData");
+        let data = await response.json();
+        renderTable(data.rows);
+    } catch(e) {
+        document.getElementById('tableBody').innerHTML = '<tr><td colspan="4" style="color:red;">فشل جلب البيانات</td></tr>';
+    }
+}
+
+function renderTable(rows){
+    var tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+    if(!rows || rows.length === 0){ return; }
+    
+    rows.forEach(function(row){
+        addRowToTable(row[0] || "", row[1] || "", row[2] || "");
+    });
+}
+
+function addRowToTable(val1 = "", val2 = "", val3 = ""){
+    var tbody = document.getElementById('tableBody');
+    var tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><input type="text" value="${val1}"></td>
+        <td><input type="text" value="${val2}"></td>
+        <td><input type="text" value="${val3}"></td>
+        <td><button class="action-btn delete-btn" onclick="this.parentElement.parentElement.remove()"><i class="fas fa-trash"></i></button></td>
+    `;
+    tbody.appendChild(tr);
+}
+function addNewRow(){ addRowToTable("", "", ""); }
+
+// 4. حفظ البيانات الجديدة في شيت Data
+async function saveAdminData(){
+    var btn = document.getElementById('saveDataBtn');
+    btn.disabled = true; btn.innerText = "جاري الحفظ...";
+    
+    var rows = [];
+    var trs = document.getElementById('tableBody').getElementsByTagName('tr');
+    for(var i=0; i<trs.length; i++){
+        var inputs = trs[i].getElementsByTagName('input');
+        if(inputs.length >= 3){
+            rows.push([inputs[0].value.trim(), inputs[1].value.trim(), inputs[2].value.trim()]);
+        }
+    }
+    
+    try {
+        let response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({action: 'updateData', rows: rows})
+        });
+        let res = await response.json();
+        btn.disabled = false; btn.innerText = "حفظ التعديلات في الشيت";
+        if(res.success){
+            alert("تم الحفظ بنجاح وتحديث الشيت!");
+            fetchData(); // تحديث القوائم العادية
+        } else {
+            alert("حدث خطأ أثناء الحفظ.");
+        }
+    } catch(e) {
+        btn.disabled = false; btn.innerText = "حفظ التعديلات في الشيت";
+        alert("فشل الاتصال.");
+    }
+}
+
+// 5. تحميل شيت الحجز
+async function downloadReserveSheet(){
+    var btn = document.getElementById('downloadBtn');
+    var originalText = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحميل...';
+    
+    try {
+        let response = await fetch(SCRIPT_URL + "?action=downloadReserve");
+        let res = await response.json();
+        btn.disabled = false; btn.innerHTML = originalText;
+        
+        if(res.success && res.csv){
+            var blob = new Blob(["\uFEFF" + res.csv], { type: 'text/csv;charset=utf-8;' });
+            var link = document.createElement("a");
+            var url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "Reservations.csv");
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            alert("لم يتم العثور على بيانات لتحميلها.");
+        }
+    } catch(e) {
+        btn.disabled = false; btn.innerHTML = originalText;
+        alert("خطأ أثناء التحميل.");
     }
 }
 </script>
